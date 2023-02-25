@@ -1,0 +1,229 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8x]{inputenc}
+\usepackage{hyperref}
+\usepackage{fontawesome}
+\usepackage{graphicx}
+\usepackage[english,ngerman]{babel}
+
+% ------------------------------------------------------------------------------
+% Use the beautiful metropolis beamer template
+% ------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+\usepackage{FiraSans} 
+\mode<presentation>
+{
+  \usetheme[progressbar=foot,numbering=fraction,background=light]{metropolis} 
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  %\setbeamertemplate{frame footer}{My custom footer}
+} 
+
+% ------------------------------------------------------------------------------
+% beamer doesn't have texttt defined, but I usually want it anyway
+% ------------------------------------------------------------------------------
+\let\textttorig\texttt
+\renewcommand<>{\texttt}[1]{%
+  \only#2{\textttorig{#1}}%
+}
+
+% ------------------------------------------------------------------------------
+% minted
+% ------------------------------------------------------------------------------
+\usepackage{minted}
+
+
+% ------------------------------------------------------------------------------
+% tcolorbox / tcblisting
+% ------------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{codecolor}{HTML}{FFC300}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{most,listingsutf8,minted}
+
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,
+right=1mm,boxsep=1mm,middle=1pt}
+
+\newtcblisting{myr}[1]{colback=codecolor!5,colframe=codecolor!80!black,listing only, 
+minted options={numbers=left, style=tcblatex,fontsize=\tiny,breaklines,autogobble,linenos,numbersep=3mm},
+left=5mm,enhanced,
+title=#1, fonttitle=\bfseries,
+listing engine=minted,minted language=r}
+
+
+% ------------------------------------------------------------------------------
+% Listings
+% ------------------------------------------------------------------------------
+\definecolor{mygreen}{HTML}{37980D}
+\definecolor{myblue}{HTML}{0D089F}
+\definecolor{myred}{HTML}{98290D}
+
+\usepackage{listings}
+
+% the following is optional to configure custom highlighting
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morecomment=[s]{<!--}{-->},
+  morestring=[s]{>}{<},
+  morekeywords={ref,xmlns,version,type,canonicalRef,metr,real,target}% list your attributes here
+}
+
+\lstdefinestyle{myxml}{
+language=XML,
+showspaces=false,
+showtabs=false,
+basicstyle=\ttfamily,
+columns=fullflexible,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+basicstyle=\color{mygreen}\ttfamily,%\footnotesize,
+stringstyle=\color{myred},
+commentstyle=\color{myblue}\upshape,
+keywordstyle=\color{myblue}\bfseries,
+}
+
+
+% ------------------------------------------------------------------------------
+% The Document
+% ------------------------------------------------------------------------------
+\title{Aprendizaje Automatico ML}
+\author{Jose Luis Gomez}
+\date{Febrero 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Concepto Aprendizaje Automático}
+\includegraphics[width=\paperwidth,height=\paperheight]
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagenes/descarga.jpg}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}
+
+
+\begin{frame}[fragile,allowframebreaks]{¿Qué es el Aprendizaje Automático}
+
+El aprendizaje automático (ML) es una rama de la inteligencia artificial que se refiere al proceso por el cual los PC desarrollan el reconocimiento de patrones o la capacidad de aprender continuamente y realizar predicciones basadas en datos;)
+   \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagenes/cab-1024x494.jpg}
+    \caption{.}
+    \label{fig:my_label}
+\end{figure}
+
+\framebreak
+
+
+\section{Diferencia entre aprendizaje automático e  IA }
+
+
+\footnotesize
+La IA ofrece amplias pinceladas para las máquinas que imitan la inteligencia humana, mientras que el aprendizaje automático es la aplicación práctica del procesamiento de información similar al humano. Como clasificador más amplio y general, la IA 
+
+\framebreak
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagenes/machine-learning-t.jpg}
+    \caption{.}
+    \label{fig:my_label}
+\end{figure}
+
+\footnotesize
+básicamente, un modelo de aprendizaje automático es un PC que analiza datos e identifica patrones, y luego usa esos conocimientos para completar mejor la tarea asignada.
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Tipos de modelos de aprendizaje automático}
+
+\begin{enumerate}
+\item \texttt{Aprendizaje supervisado}
+    \footnotesize
+    el PC tiene un grupo etiquetado de datos que le permiten aprender a hacer una tarea humana. Este es el modelo menos complejo, ya que intenta replicar el aprendizaje humano.
+
+ \item \texttt{Aprendizaje no supervisado}
+    \footnotesize
+    El PC tiene datos sin etiquetar y extrae de ellos información o patrones previamente desconocidos
+ \item \texttt {Aprendizaje semisupervisado}
+     \footnotesize
+     el PC tiene una serie de datos parcialmente etiquetados y realiza su tarea usando los datos etiquetados para entender los parámetros e interpretar los datos no etiquetados.
+\item \texttt {Aprendizaje de refuerzo}
+     \footnotesize
+     el PC observa su entorno y usa esos datos para identificar la conducta ideal que minimizará el riesgo o maximizará la recompensa
+ 
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Técnicas de Aprendizaje Automático}
+\item \texttt{Segmentación}
+    \footnotesize
+    Los datos disponibles están compuestos de características que se agrupan en patrones, sin un componente temporal muy marcado o dominante.
+\item \texttt{Clasificación}
+    \footnotesize
+    las variables o características son discretas (toman los valores de los contenidos en un conjunto finito y normalmente pequeño de posibilidades.
+\item \texttt{Predicción}
+    \footnotesize
+    los datos de los que se disponen están fundamentalmente en la forma de serie temporal, o el tiempo es una característica muy relevante para el problema.    
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Beneficios}
+
+\begin{enumerate}
+\item  Aprendizaje Adaptativo: Capacidad de aprender a realizar tareas basadas en un entrenamiento o en una experiencia inicial
+\item Generalización: a partir de datos concretos pueden inferir un conocimiento que les permiten responder adecuadamente a nuevos datos. 
+\item Auto-organización:. Esta característica permite auto-crear la estructura de conocimiento e incluso generar nuevo conocimiento
+\item Operación en tiempo real: Los cómputos neuronales pueden ser realizados en paralelo; para esto se diseñan y fabrican máquinas con hardware especial para obtener esta capacidad. 
+    
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Aplicaciones}
+Sector Financiero
+
+Predicción de la demanda 
+
+tipos de clientes que compran  productos 
+
+Definir qué productos o servicios deben ser ofrecidos a qué clientes
+   \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagenes/deep-learning-1200x720.jpg}
+    \caption{.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{lstlisting}
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Bibliografía fuentes de consulta}
+\item https://www.oracle.com/co/artificial-intelligence/machine-learning/what-is-machine-learning/
+\item https://www.hpe.com/lamerica/es/what-is/machine-learning.html
+\item https://www.computerweekly.com/es/definicion/Aprendizaje-automatico-machine-learning
+\item https://blog.edx.org/es/inteligencia-artificial-vs-aprendizaje-automatico-explicacion-y-consejos-de-aprendizaje
+\item https://gamco.es/que-es-el-aprendizaje-automatico/
+\item https://www.aicad.es/aprendizaje-automatico/#:~:text=Entre%20los%20ejemplos%20m%C3%A1s%20comunes,seg%C3%BAn%20su%20remitente%20o%20preferencia.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\end{frame}
+\end{document}
